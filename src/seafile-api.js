@@ -522,6 +522,14 @@ class SeafileAPI {
     return this._sendPostRequest(url, form);
   }
 
+  resetEncryptedRepoPassword(repoID, operation, newPassword) {
+    const url = this.server + '/api/v2.1/repos/' + repoID + '/set-password/';
+    let form = new FormData();
+    form.append('operation', operation);
+    form.append('new_password', newPassword);
+    return this.req.put(url, form);
+  }
+
   createPublicRepo(repo) {
     const url = this.server + '/api2/repos/public/';
     return this.req.post(url, repo);
